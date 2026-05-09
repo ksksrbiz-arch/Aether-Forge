@@ -9,6 +9,7 @@ namespace AetherForge.Player
         public float Reach = 5f;
         public float MoveSpeed = 5f;
         public float LookSensitivity = 2f;
+        public float DesktopLookMultiplier = 3f;
         public float PitchClamp = 80f;
         public WorldManager World;
         public Transform PlayerRoot;
@@ -43,7 +44,7 @@ namespace AetherForge.Player
             else
             {
                 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-                lookInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")) * 3f;
+                lookInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")) * DesktopLookMultiplier;
                 if (Input.GetMouseButtonDown(0)) TryBreakBlock();
                 if (Input.GetMouseButtonDown(1)) TryPlaceBlock();
             }

@@ -26,10 +26,13 @@ namespace AetherForge.Factory
                     continue;
 
                 machine.ValueRW.CurrentProgress = 0f;
-                inventory.ValueRW.InputCount -= recipe.ValueRO.InputCount;
-                if (inventory.ValueRO.InputCount <= 0)
+                var remainingInput = inventory.ValueRO.InputCount - recipe.ValueRO.InputCount;
+                if (remainingInput < 0)
+                    remainingInput = 0;
+
+                inventory.ValueRW.InputCount = remainingInput;
+                if (remainingInput == 0)
                 {
-                    inventory.ValueRW.InputCount = 0;
                     inventory.ValueRW.InputType = ItemType.None;
                 }
 

@@ -6,6 +6,10 @@ namespace AetherForge.Factory
     [BurstCompile]
     public partial struct InserterTransferSystem : ISystem
     {
+        private const float MinimumTransferInterval = 0.1f;
+        private const int DefaultStackCapacity = 8;
+        private const int DefaultInventoryCapacity = 16;
+
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
@@ -29,7 +33,7 @@ namespace AetherForge.Factory
                     continue;
 
                 RemoveFromSource(in inserter.ValueRO, ref itemStacks, ref machineInventories);
-                inserter.ValueRW.Cooldown = inserter.ValueRO.TransferInterval <= 0f ? 0.1f : inserter.ValueRO.TransferInterval;
+                inserter.ValueRW.Cooldown = inserter.ValueRO.TransferInterval <= 0f ? MinimumTransferInterval : inserter.ValueRO.TransferInterval;
             }
         }
 
@@ -73,7 +77,7 @@ namespace AetherForge.Factory
             if (itemStacks.HasComponent(inserter.Target))
             {
                 var stack = itemStacks[inserter.Target];
-                var capacity = stack.Capacity <= 0 ? 8 : stack.Capacity;
+                var capacity = stack.Capacity <= 0 ? DefaultStackCapacity : stack.Capacity;
                 if (stack.Count >= capacity)
                     return false;
 
@@ -91,7 +95,7 @@ namespace AetherForge.Factory
             if (machineInventories.HasComponent(inserter.Target))
             {
                 var inventory = machineInventories[inserter.Target];
-                var capacity = inventory.InputCapacity <= 0 ? 16 : inventory.InputCapacity;
+                var capacity = inventory.InputCapacity <= 0 ? DefaultInventoryCapacity : inventory.InputCapacity;
                 if (inventory.InputCount >= capacity)
                     return false;
 
