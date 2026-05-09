@@ -15,7 +15,7 @@ namespace AetherForge.Kits
                 return;
             }
 
-            var root = PlacementRoot == null ? null : PlacementRoot;
+            var root = PlacementRoot;
             for (int i = 0; i < StarterAutomationKit.Placements.Count; i++)
             {
                 var placement = StarterAutomationKit.Placements[i];

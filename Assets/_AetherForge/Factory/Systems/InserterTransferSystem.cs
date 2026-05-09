@@ -44,10 +44,10 @@ namespace AetherForge.Factory
             if (itemStacks.HasComponent(inserter.Source))
             {
                 var stack = itemStacks[inserter.Source];
-                if (stack.Count <= 0 || stack.ItemType == ItemType.None)
+                if (stack.Count <= 0 || stack.Item == ItemType.None)
                     return false;
 
-                itemType = stack.ItemType;
+                itemType = stack.Item;
                 return true;
             }
 
@@ -77,11 +77,11 @@ namespace AetherForge.Factory
                 if (stack.Count >= capacity)
                     return false;
 
-                if (stack.Count > 0 && stack.ItemType != itemType)
+                if (stack.Count > 0 && stack.Item != itemType)
                     return false;
 
                 if (stack.Count == 0)
-                    stack.ItemType = itemType;
+                    stack.Item = itemType;
 
                 stack.Count += 1;
                 itemStacks[inserter.Target] = stack;
@@ -121,7 +121,7 @@ namespace AetherForge.Factory
                 if (stack.Count <= 0)
                 {
                     stack.Count = 0;
-                    stack.ItemType = ItemType.None;
+                    stack.Item = ItemType.None;
                 }
 
                 itemStacks[inserter.Source] = stack;

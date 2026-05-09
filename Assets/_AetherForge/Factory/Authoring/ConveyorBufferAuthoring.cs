@@ -24,7 +24,7 @@ namespace AetherForge.Factory
 
                 AddComponent(entity, new ItemStack
                 {
-                    ItemType = authoring.StartingCount > 0 ? authoring.StartingItem : ItemType.None,
+                    Item = authoring.StartingCount > 0 ? authoring.StartingItem : ItemType.None,
                     Count = Mathf.Max(0, authoring.StartingCount),
                     Capacity = Mathf.Max(1, authoring.Capacity),
                     Progress = 0f
