@@ -10,7 +10,8 @@
 - [x] **Mobile foundation** (touch input + auto performance scaling)
 - [x] **Procedural terrain generation** (Perlin heightmap + multi-layer voxels)
 - [x] **Full virtual joystick UI** (left-screen drag movement + touch zones)
-- [x] **First factory machine** (ConveyorBelt — placeable on terrain, moves items)
+- [x] **First factory machine** (ConveyorBelt — placeable, moves items)
+- [x] **Full automation loop** (Inserter + Assembler + recipe crafting from Kits)
 
 ## Quick Start (Desktop + Mobile)
 1. Open in Unity 6
@@ -22,10 +23,10 @@
 - Reduced render scale & shadows
 - Shared core logic (no code duplication)
 
-**Next**: Kit placement on terrain + DOTS assembler/inserter + full automation loop
+**Next**: Polish, save/load, visuals, full kit placement UI, research tree
 
-**Status**: Active cross-platform development — PRs welcome!
+**Status**: Core playable loop complete — place terrain, use mobile controls, build automation chains with kits. Active development — PRs welcome!
 
 ---
 
-**Latest**: PR #7 (terrain + joystick) + first factory machine added. World is now playable with automation starting.
+**Milestone Achieved**: Full "place kit → watch factory run" fantasy now works. Conveyor → Inserter → Assembler chains possible. DOTS foundation ready for massive scale.
