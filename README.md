@@ -12,13 +12,18 @@
 - [x] **Full virtual joystick UI** (left-screen drag movement + touch zones)
 - [x] **First factory machine** (ConveyorBelt)
 - [x] **Full automation loop** (Inserter + Assembler + recipe crafting)
+- [x] DOTS inserter/machine/conveyor transfer loop + ScriptableObject recipes
+- [x] Starter Automation Kit placement flow
+- [x] Virtual joystick + mobile action buttons/hooks
 - [x] **Save/Load system** (world chunks + machines, JSON persistence)
 - [x] **Research Tree** (ResearchNode + ResearchManager + ResearchUI with unlock buttons)
 
 ## Quick Start (Desktop + Mobile)
 1. Open in Unity 6
-2. Add MobilePerformanceSettings + MobileInputManager + SaveLoadManager + ResearchManager + ResearchUI to your scene
-3. Play, build, research new tech, save, load on desktop or mobile
+2. Add MobilePerformanceSettings + MobileInputManager + PlayerInteraction + SaveLoadManager + ResearchManager + ResearchUI to your scene
+3. Add a Canvas with joystick + break/place buttons and wire to MobileInputManager / MobileActionButton
+4. Use StarterAutomationKitPlacer with a StarterAutomationKitDefinition asset to place a prebuilt mini-factory
+5. Play, build, research new tech, save/load on desktop or mobile
 
 ## Mobile Optimizations
 - 30 FPS target on mobile

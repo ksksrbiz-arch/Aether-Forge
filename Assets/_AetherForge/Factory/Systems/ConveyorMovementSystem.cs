@@ -1,22 +1,28 @@
 using Unity.Burst;
 using Unity.Entities;
-using Unity.Mathematics;
-using Unity.Transforms;
 
-[BurstCompile]
-public partial struct ConveyorMovementSystem : ISystem
+namespace AetherForge.Factory
 {
     [BurstCompile]
-    public void OnUpdate(ref SystemState state)
+    public partial struct ConveyorMovementSystem : ISystem
     {
-        var deltaTime = SystemAPI.Time.DeltaTime;
-        
-        foreach (var (transform, conveyor, itemStack) in 
-                 SystemAPI.Query<RefRW<LocalTransform>, RefRO<ConveyorBelt>, RefRW<ItemStack>>())
+        [BurstCompile]
+        public void OnUpdate(ref SystemState state)
         {
-            // Simple movement simulation along belt
-            // In full version would move items between positions
-            itemStack.ValueRW.Progress += conveyor.ValueRO.Speed * deltaTime;
+            var deltaTime = SystemAPI.Time.DeltaTime;
+
+            foreach (var (conveyor, itemStack) in SystemAPI.Query<RefRO<ConveyorBelt>, RefRW<ItemStack>>())
+            {
+                if (itemStack.ValueRO.Count <= 0)
+                {
+                    itemStack.ValueRW.Progress = 0f;
+                    continue;
+                }
+
+                itemStack.ValueRW.Progress += conveyor.ValueRO.Speed * deltaTime;
+                if (itemStack.ValueRO.Progress >= 1f)
+                    itemStack.ValueRW.Progress -= 1f;
+            }
         }
     }
 }
