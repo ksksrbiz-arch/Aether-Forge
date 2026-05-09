@@ -1,18 +1,15 @@
-# AetherForge - Core Foundation
+# AetherForge - Voxel Mesh & Editing Phase
 
-This folder contains the foundational systems for AetherForge.
+## Progress
+- [x] Foundation Core (merged)
+- [x] Voxel mesh generation (greedy-style starter)
+- [x] WorldManager with chunk loading
+- [x] Player block breaking + placing (raycast)
 
-## Current Status (Foundation Phase)
-- [x] Voxel data structures & basic chunk
-- [x] Item system
-- [x] DOTS-ready FactorySimulationSystem stub
-- [x] KitDefinition ScriptableObject base
-- [x] Unity 6 + DOTS packages in manifest
+## How to Test
+1. Create a new scene
+2. Add WorldManager + assign ChunkPrefab (empty GameObject with VoxelChunk + VoxelMeshGenerator + MeshFilter + MeshRenderer)
+3. Add PlayerInteraction to your player/camera
+4. Play and left/right click to edit the world!
 
-## Next Milestones
-1. Full voxel mesh generation & editing
-2. Working conveyor belt + inserter (DOTS)
-3. First playable Starter Kit
-4. World persistence (save/load chunks)
-
-**Branch**: feat/foundation-core
+**Next**: Proper terrain generation + optimized meshing + DOTS factory integration

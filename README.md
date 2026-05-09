@@ -2,30 +2,25 @@
 
 **Voxel Builder meets Factory Automation** — Minecraft creativity + Factorio logistics + modular Kits.
 
-## 🚀 Current Progress (Foundation Phase Complete)
+## 🚀 Current Progress (Voxel Mesh & Editing Phase)
 
-- Core voxel chunk system (16³)
-- Item & Factory DOTS scaffolding
-- Modular KitDefinition system
-- Full Unity 6 + DOTS + Addressables setup
+- [x] Foundation Core (voxel data, DOTS factory stub, Kits)
+- [x] Voxel mesh generation + world editing
+- [x] Player interaction (break/place blocks)
+- [x] Basic flat world generation
 
 ## Quick Start
-1. Clone repo
-2. Open in **Unity 6** (or 2022.3 LTS)
-3. Let Unity resolve packages
-4. Open `Assets/_AetherForge/Scenes/` (create demo scene)
-5. Play the voxel test
+1. Open in **Unity 6**
+2. Create scene with:
+   - WorldManager
+   - Player with PlayerInteraction
+   - Chunk prefab (VoxelChunk + VoxelMeshGenerator + MeshFilter + MeshRenderer)
+3. Play and edit the world!
 
-## Architecture
-- **World/** — Voxel terrain & building
-- **Factory/** — High-performance automation (DOTS)
-- **Kits/** — Modular blueprints players unlock & combine
-- **Core/** — Shared systems
-
-## How to Contribute
-See `docs/repo-creation-spec.md` for full guidelines.
+## Next Milestones
+- Full terrain generation (Perlin noise)
+- Optimized greedy meshing + texture atlas
+- First working DOTS conveyor belt
+- Starter Automation Kit
 
 **Status**: Active development — PRs welcome!
-
----
-*Last updated: Foundation Core PR*

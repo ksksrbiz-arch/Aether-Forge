@@ -4,8 +4,7 @@ using System.Collections.Generic;
 namespace AetherForge.World
 {
     /// <summary>
-    /// Basic voxel chunk (16x16x16 for now).
-    /// Future: Integrate with DOTS for large worlds + mesh generation.
+    /// Voxel chunk with mesh rebuilding support.
     /// </summary>
     public class VoxelChunk : MonoBehaviour
     {
@@ -14,17 +13,21 @@ namespace AetherForge.World
 
         public Vector3Int ChunkPosition;
 
-        private void Start()
+        private VoxelMeshGenerator meshGenerator;
+
+        private void Awake()
         {
-            // TODO: Generate terrain or load from disk
-            Debug.Log($"Chunk initialized at {ChunkPosition}");
+            meshGenerator = GetComponent<VoxelMeshGenerator>();
         }
 
         public void SetVoxel(int x, int y, int z, VoxelData data)
         {
             if (x < 0 || x >= Size || y < 0 || y >= Size || z < 0 || z >= Size) return;
             Voxels[x, y, z] = data;
-            // TODO: Mark dirty for mesh rebuild
+
+            // Auto-rebuild mesh when changed
+            if (meshGenerator != null)
+                meshGenerator.GenerateMesh();
         }
 
         public VoxelData GetVoxel(int x, int y, int z)
