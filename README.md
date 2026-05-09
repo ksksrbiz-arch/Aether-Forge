@@ -13,17 +13,18 @@
 - [x] **First factory machine** (ConveyorBelt)
 - [x] **Full automation loop** (Inserter + Assembler + recipe crafting)
 - [x] **Save/Load system** (world chunks + machines, JSON persistence)
+- [x] **Research Tree foundation** (ResearchNode + ResearchManager + point rewards from crafting)
 
 ## Quick Start (Desktop + Mobile)
 1. Open in Unity 6
-2. Add MobilePerformanceSettings + MobileInputManager + SaveLoadManager to your scene
-3. Play, build, save, load on desktop or mobile
+2. Add MobilePerformanceSettings + MobileInputManager + SaveLoadManager + ResearchManager to your scene
+3. Play, build, research, save, load on desktop or mobile
 
 ## Mobile Optimizations
 - 30 FPS target on mobile
 - Reduced render scale & shadows
 - Shared core logic (no code duplication)
 
-**Next**: Polish (UI, visuals, sounds), full kit placement, research tree, multiplayer
+**Next**: Full Research Tree UI + Kit Blueprints + Fluids & Pipes
 
-**Status**: Complete playable prototype with persistence. Save your world and factory! Active development — PRs welcome!
+**Status**: Research & progression system now live! Automation earns Research Points. Active development — PRs welcome!
