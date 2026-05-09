@@ -2,25 +2,23 @@
 
 **Voxel Builder meets Factory Automation** — Minecraft creativity + Factorio logistics + modular Kits.
 
-## 🚀 Current Progress (Voxel Mesh & Editing Phase)
+**Now with full mobile support!** Runs great on phones & tablets.
 
-- [x] Foundation Core (voxel data, DOTS factory stub, Kits)
-- [x] Voxel mesh generation + world editing
-- [x] Player interaction (break/place blocks)
-- [x] Basic flat world generation
+## 🚀 Current Progress
+- [x] Foundation Core (voxel data, DOTS, Kits)
+- [x] Voxel mesh + world editing
+- [x] **Mobile foundation** (touch input + auto performance scaling)
 
-## Quick Start
-1. Open in **Unity 6**
-2. Create scene with:
-   - WorldManager
-   - Player with PlayerInteraction
-   - Chunk prefab (VoxelChunk + VoxelMeshGenerator + MeshFilter + MeshRenderer)
-3. Play and edit the world!
+## Quick Start (Desktop + Mobile)
+1. Open in Unity 6
+2. Add MobilePerformanceSettings + MobileInputManager to your scene
+3. Play on desktop (mouse) or build to Android/iOS (touch)
 
-## Next Milestones
-- Full terrain generation (Perlin noise)
-- Optimized greedy meshing + texture atlas
-- First working DOTS conveyor belt
-- Starter Automation Kit
+## Mobile Optimizations
+- 30 FPS target on mobile
+- Reduced render scale & shadows
+- Shared core logic (no code duplication)
 
-**Status**: Active development — PRs welcome!
+**Next**: Virtual joystick UI + terrain generation + first factory machine
+
+**Status**: Active cross-platform development — PRs welcome!

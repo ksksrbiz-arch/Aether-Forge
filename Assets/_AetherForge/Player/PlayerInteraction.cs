@@ -1,33 +1,37 @@
 using UnityEngine;
+using AetherForge.Mobile;
 
 namespace AetherForge.Player
 {
-    /// <summary>
-    /// Handles player block breaking and placing.
-    /// Attach to player camera or character.
-    /// </summary>
     public class PlayerInteraction : MonoBehaviour
     {
         public float Reach = 5f;
         public WorldManager World;
 
         private Camera cam;
+        private MobileInputManager mobileInput;
 
         private void Start()
         {
             cam = Camera.main;
+            mobileInput = MobileInputManager.Instance;
         }
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0)) // Left click = break
-            {
-                TryBreakBlock();
-            }
+            bool isMobile = MobileInputManager.IsMobilePlatform();
 
-            if (Input.GetMouseButtonDown(1)) // Right click = place
+            if (isMobile && mobileInput != null)
             {
-                TryPlaceBlock();
+                // Mobile input
+                if (mobileInput.IsBreaking) TryBreakBlock();
+                if (mobileInput.IsPlacing) TryPlaceBlock();
+            }
+            else
+            {
+                // Desktop input
+                if (Input.GetMouseButtonDown(0)) TryBreakBlock();
+                if (Input.GetMouseButtonDown(1)) TryPlaceBlock();
             }
         }
 
@@ -45,8 +49,7 @@ namespace AetherForge.Player
             if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, Reach))
             {
                 Vector3Int pos = Vector3Int.RoundToInt(hit.point + hit.normal * 0.5f);
-                World.SetBlock(pos, new VoxelData { Type = 3 }); // Example: place "wood" or whatever
-            }
+                World.SetBlock(pos, new VoxelData { Type = 3 });
             }
         }
     }
