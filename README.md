@@ -10,23 +10,20 @@
 - [x] **Mobile foundation** (touch input + auto performance scaling)
 - [x] **Procedural terrain generation** (Perlin heightmap + multi-layer voxels)
 - [x] **Full virtual joystick UI** (left-screen drag movement + touch zones)
-- [x] **First factory machine** (ConveyorBelt — placeable, moves items)
-- [x] **Full automation loop** (Inserter + Assembler + recipe crafting from Kits)
+- [x] **First factory machine** (ConveyorBelt)
+- [x] **Full automation loop** (Inserter + Assembler + recipe crafting)
+- [x] **Save/Load system** (world chunks + machines, JSON persistence)
 
 ## Quick Start (Desktop + Mobile)
 1. Open in Unity 6
-2. Add MobilePerformanceSettings + MobileInputManager to your scene
-3. Play on desktop (mouse) or build to Android/iOS (touch)
+2. Add MobilePerformanceSettings + MobileInputManager + SaveLoadManager to your scene
+3. Play, build, save, load on desktop or mobile
 
 ## Mobile Optimizations
 - 30 FPS target on mobile
 - Reduced render scale & shadows
 - Shared core logic (no code duplication)
 
-**Next**: Polish, save/load, visuals, full kit placement UI, research tree
+**Next**: Polish (UI, visuals, sounds), full kit placement, research tree, multiplayer
 
-**Status**: Core playable loop complete — place terrain, use mobile controls, build automation chains with kits. Active development — PRs welcome!
-
----
-
-**Milestone Achieved**: Full "place kit → watch factory run" fantasy now works. Conveyor → Inserter → Assembler chains possible. DOTS foundation ready for massive scale.
+**Status**: Complete playable prototype with persistence. Save your world and factory! Active development — PRs welcome!
