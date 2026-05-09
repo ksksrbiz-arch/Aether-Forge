@@ -5,6 +5,12 @@ namespace AetherForge.Factory
 {
     public class MachineRecipeAuthoring : MonoBehaviour
     {
+        private const ItemType DefaultInputItem = ItemType.IronOre;
+        private const int DefaultInputCount = 1;
+        private const ItemType DefaultOutputItem = ItemType.IronPlate;
+        private const int DefaultOutputCount = 1;
+        private const float DefaultProcessingTime = 1f;
+
         public MachineType MachineType = MachineType.Assembler;
         public RecipeDefinition Recipe;
         public int InputCapacity = 16;
@@ -19,11 +25,11 @@ namespace AetherForge.Factory
                     ? authoring.Recipe.ToMachineRecipe()
                     : new MachineRecipe
                     {
-                        InputItem = ItemType.IronOre,
-                        InputCount = 1,
-                        OutputItem = ItemType.IronPlate,
-                        OutputCount = 1,
-                        ProcessingTime = 1f
+                        InputItem = DefaultInputItem,
+                        InputCount = DefaultInputCount,
+                        OutputItem = DefaultOutputItem,
+                        OutputCount = DefaultOutputCount,
+                        ProcessingTime = DefaultProcessingTime
                     };
 
                 AddComponent(entity, new Machine

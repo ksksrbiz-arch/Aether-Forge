@@ -51,9 +51,6 @@ namespace AetherForge.Mobile
                 return;
             }
 
-            if (touchscreen == null)
-                touchscreen = Touchscreen.current;
-
             LookInput = Vector2.zero;
             MoveInput = Vector2.zero;
             bool breakFromZones = false;

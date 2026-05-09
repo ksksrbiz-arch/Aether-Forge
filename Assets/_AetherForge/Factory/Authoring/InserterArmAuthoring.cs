@@ -27,7 +27,7 @@ namespace AetherForge.Factory
                     Source = source,
                     Target = target,
                     FilterItem = authoring.FilterItem,
-                    TransferInterval = Mathf.Max(0.05f, authoring.TransferInterval),
+                    TransferInterval = Mathf.Max(FactoryDefaults.InserterMinimumTransferInterval, authoring.TransferInterval),
                     Cooldown = 0f
                 });
             }

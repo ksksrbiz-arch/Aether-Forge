@@ -22,7 +22,7 @@ namespace AetherForge.Player
         {
             cam = Camera.main;
             mobileInput = MobileInputManager.Instance;
-            PlayerRoot = PlayerRoot == null ? transform : PlayerRoot;
+            if (PlayerRoot == null) PlayerRoot = transform;
 
             if (cam != null)
                 pitch = cam.transform.localEulerAngles.x;

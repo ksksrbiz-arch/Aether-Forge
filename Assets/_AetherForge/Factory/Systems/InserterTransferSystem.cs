@@ -6,7 +6,6 @@ namespace AetherForge.Factory
     [BurstCompile]
     public partial struct InserterTransferSystem : ISystem
     {
-        private const float MinimumTransferInterval = 0.1f;
         private const int DefaultStackCapacity = 8;
         private const int DefaultInventoryCapacity = 16;
 
@@ -33,7 +32,9 @@ namespace AetherForge.Factory
                     continue;
 
                 RemoveFromSource(in inserter.ValueRO, ref itemStacks, ref machineInventories);
-                inserter.ValueRW.Cooldown = inserter.ValueRO.TransferInterval <= 0f ? MinimumTransferInterval : inserter.ValueRO.TransferInterval;
+                inserter.ValueRW.Cooldown = inserter.ValueRO.TransferInterval <= 0f
+                    ? FactoryDefaults.InserterMinimumTransferInterval
+                    : inserter.ValueRO.TransferInterval;
             }
         }
 
