@@ -8,22 +8,28 @@
 - [x] Foundation Core (voxel data, DOTS, Kits)
 - [x] Voxel mesh + world editing
 - [x] **Mobile foundation** (touch input + auto performance scaling)
+- [x] **Procedural terrain generation** (Perlin heightmap + multi-layer voxels)
+- [x] **Full virtual joystick UI** (left-screen drag movement + touch zones)
+- [x] **First factory machine** (ConveyorBelt)
+- [x] **Full automation loop** (Inserter + Assembler + recipe crafting)
 - [x] DOTS inserter/machine/conveyor transfer loop + ScriptableObject recipes
 - [x] Starter Automation Kit placement flow
 - [x] Virtual joystick + mobile action buttons/hooks
+- [x] **Save/Load system** (world chunks + machines, JSON persistence)
+- [x] **Research Tree** (ResearchNode + ResearchManager + ResearchUI with unlock buttons)
 
 ## Quick Start (Desktop + Mobile)
 1. Open in Unity 6
-2. Add `MobilePerformanceSettings`, `MobileInputManager`, and `PlayerInteraction` to your scene
-3. Add a Canvas with joystick + break/place buttons and wire to `MobileInputManager` / `MobileActionButton`
-4. Use `StarterAutomationKitPlacer` with a `StarterAutomationKitDefinition` asset to place a prebuilt mini-factory
-5. Play on desktop (mouse/keyboard) or build to Android/iOS (touch)
+2. Add MobilePerformanceSettings + MobileInputManager + PlayerInteraction + SaveLoadManager + ResearchManager + ResearchUI to your scene
+3. Add a Canvas with joystick + break/place buttons and wire to MobileInputManager / MobileActionButton
+4. Use StarterAutomationKitPlacer with a StarterAutomationKitDefinition asset to place a prebuilt mini-factory
+5. Play, build, research new tech, save/load on desktop or mobile
 
 ## Mobile Optimizations
 - 30 FPS target on mobile
 - Reduced render scale & shadows
 - Shared core logic (no code duplication)
 
-**Next**: Expand machine set, build first full factory demo scene, and add balancing
+**Next**: Kit Blueprints + Fluids & Pipes + full Research Tree integration with Kits
 
-**Status**: Active cross-platform development — PRs welcome!
+**Status**: Research Tree UI is live! Unlock nodes and earn points from automation. Active development — PRs welcome!
