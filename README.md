@@ -8,6 +8,8 @@
 - [x] Foundation Core (voxel data, DOTS, Kits)
 - [x] Voxel mesh + world editing
 - [x] **Mobile foundation** (touch input + auto performance scaling)
+- [x] **Procedural terrain generation** (Perlin heightmap + multi-layer voxels: grass/dirt/stone/ore/bedrock, mobile-optimized)
+- [x] **Full virtual joystick UI** (left-screen drag movement, right touch zones for break/place, sensitivity/deadzone)
 
 ## Quick Start (Desktop + Mobile)
 1. Open in Unity 6
@@ -19,6 +21,10 @@
 - Reduced render scale & shadows
 - Shared core logic (no code duplication)
 
-**Next**: Virtual joystick UI + terrain generation + first factory machine
+**Next**: First factory machine (conveyor/assembler DOTS integration) + kit placement on terrain
 
 **Status**: Active cross-platform development — PRs welcome!
+
+---
+
+**Latest PR**: #7 — Procedural terrain + virtual joystick (merged to main)
