@@ -101,7 +101,7 @@ namespace AetherForge.Mobile
 
         public static bool IsMobilePlatform()
         {
-            return Application.isMobilePlatform || 
+            return Application.isMobilePlatform ||
                    Application.platform == RuntimePlatform.Android ||
                    Application.platform == RuntimePlatform.IPhonePlayer;
         }
