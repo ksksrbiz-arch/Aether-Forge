@@ -5,18 +5,19 @@ namespace AetherForge.World
 {
     /// <summary>
     /// Manages the voxel world: chunk loading, editing, persistence.
-    /// This is the central system players interact with.
+    /// Now with procedural terrain (Perlin-based for mobile performance).
     /// </summary>
     public class WorldManager : MonoBehaviour
     {
         public int RenderDistance = 4;
         public GameObject ChunkPrefab;
+        public float TerrainScale = 0.1f;
+        public int MaxHeight = 8;
 
         private Dictionary<Vector3Int, VoxelChunk> loadedChunks = new Dictionary<Vector3Int, VoxelChunk>();
 
         private void Start()
         {
-            // Generate starting area
             for (int x = -RenderDistance; x <= RenderDistance; x++)
             for (int z = -RenderDistance; z <= RenderDistance; z++)
             {
@@ -31,20 +32,41 @@ namespace AetherForge.World
             VoxelChunk chunk = go.GetComponent<VoxelChunk>();
             chunk.ChunkPosition = position;
 
-            // TODO: Proper terrain generation (Perlin, etc.)
-            // For now: simple flat world
-            for (int x = 0; x < VoxelChunk.Size; x++)
-            for (int z = 0; z < VoxelChunk.Size; z++)
-            {
-                chunk.SetVoxel(x, 0, z, new VoxelData { Type = 1 }); // Stone
-                chunk.SetVoxel(x, 1, z, new VoxelData { Type = 2 }); // Dirt
-            }
+            GenerateTerrain(chunk, position);
 
             VoxelMeshGenerator meshGen = go.AddComponent<VoxelMeshGenerator>();
             meshGen.GenerateMesh();
 
             loadedChunks[position] = chunk;
             return chunk;
+        }
+
+        private void GenerateTerrain(VoxelChunk chunk, Vector3Int chunkPos)
+        {
+            for (int x = 0; x < VoxelChunk.Size; x++)
+            for (int z = 0; z < VoxelChunk.Size; z++)
+            {
+                float worldX = (chunkPos.x * VoxelChunk.Size + x) * TerrainScale;
+                float worldZ = (chunkPos.z * VoxelChunk.Size + z) * TerrainScale;
+
+                float height = Mathf.PerlinNoise(worldX, worldZ) * MaxHeight;
+                int surfaceY = Mathf.FloorToInt(height);
+
+                for (int y = 0; y <= surfaceY && y < VoxelChunk.Size; y++)
+                {
+                    byte type;
+                    if (y == surfaceY) type = 3; // Grass
+                    else if (y > surfaceY - 2) type = 2; // Dirt
+                    else type = 1; // Stone
+
+                    if (y < surfaceY - 1 && Random.value < 0.05f) type = 4; // Ore
+
+                    chunk.SetVoxel(x, y, z, new VoxelData { Type = type });
+                }
+
+                if (surfaceY > 0)
+                    chunk.SetVoxel(x, 0, z, new VoxelData { Type = 5 }); // Bedrock
+            }
         }
 
         public void SetBlock(Vector3Int worldPos, VoxelData data)
@@ -62,10 +84,14 @@ namespace AetherForge.World
 
                 chunk.SetVoxel(lx, ly, lz, data);
 
-                // Rebuild mesh
                 VoxelMeshGenerator gen = chunk.GetComponent<VoxelMeshGenerator>();
                 if (gen != null) gen.GenerateMesh();
             }
+        }
+
+        public void SetRenderDistance(int distance)
+        {
+            RenderDistance = Mathf.Clamp(distance, 2, 8);
         }
     }
 }
