@@ -60,19 +60,6 @@ Use official Unity ignores:
 Additions for this project:
 
 ```gitignore
-# Large binary assets — use Git LFS instead
-*.fbx
-*.obj
-*.blend
-*.png
-*.jpg
-*.tga
-*.exr
-*.wav
-*.ogg
-*.mp3
-*.unitypackage
-
 # Voxel-specific generated data
 Assets/_AetherForge/World/Generated/
 Assets/_AetherForge/Factory/Simulations/Cache/
@@ -81,6 +68,8 @@ Assets/_AetherForge/Factory/Simulations/Cache/
 dist/
 webgl-build/
 ```
+
+Track large binary assets in `.gitattributes` via Git LFS (for example: `*.fbx`, `*.png`, `*.wav`, `*.asset` and other heavy art/audio formats).
 
 ### Git LFS setup (mandatory)
 ```bash
