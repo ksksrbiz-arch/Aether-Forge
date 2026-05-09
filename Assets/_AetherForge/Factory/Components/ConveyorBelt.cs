@@ -1,9 +1,18 @@
 using Unity.Entities;
 
-public struct ConveyorBelt : IComponentData
+namespace AetherForge.Factory
 {
-    public float Speed;
-    public Direction Direction;
-}
+    public struct ConveyorBelt : IComponentData
+    {
+        public float Speed;
+        public Direction Direction;
+    }
 
-public enum Direction { North, East, South, West }
+    public enum Direction
+    {
+        North,
+        East,
+        South,
+        West
+    }
+}

@@ -1,21 +1,42 @@
 using Unity.Burst;
 using Unity.Entities;
 
-[BurstCompile]
-public partial struct MachineProcessingSystem : ISystem
+namespace AetherForge.Factory
 {
     [BurstCompile]
-    public void OnUpdate(ref SystemState state)
+    public partial struct MachineProcessingSystem : ISystem
     {
-        var deltaTime = SystemAPI.Time.DeltaTime;
-        
-        foreach (var machine in SystemAPI.Query<RefRW<Machine>>())
+        [BurstCompile]
+        public void OnUpdate(ref SystemState state)
         {
-            machine.ValueRW.CurrentProgress += deltaTime;
-            if (machine.ValueRO.CurrentProgress >= machine.ValueRO.ProcessingTime)
+            var deltaTime = SystemAPI.Time.DeltaTime;
+
+            foreach (var (machine, recipe, inventory) in
+                     SystemAPI.Query<RefRW<Machine>, RefRO<MachineRecipe>, RefRW<MachineInventory>>())
             {
-                // Process recipe (stub)
-                machine.ValueRW.CurrentProgress = 0;
+                if (inventory.ValueRO.InputCount < recipe.ValueRO.InputCount ||
+                    inventory.ValueRO.OutputCount + recipe.ValueRO.OutputCount > inventory.ValueRO.OutputCapacity)
+                {
+                    machine.ValueRW.CurrentProgress = 0f;
+                    continue;
+                }
+
+                machine.ValueRW.CurrentProgress += deltaTime;
+                if (machine.ValueRO.CurrentProgress < recipe.ValueRO.ProcessingTime)
+                    continue;
+
+                machine.ValueRW.CurrentProgress = 0f;
+                inventory.ValueRW.InputCount -= recipe.ValueRO.InputCount;
+                if (inventory.ValueRO.InputCount <= 0)
+                {
+                    inventory.ValueRW.InputCount = 0;
+                    inventory.ValueRW.InputType = ItemType.None;
+                }
+
+                if (inventory.ValueRO.OutputCount == 0)
+                    inventory.ValueRW.OutputType = recipe.ValueRO.OutputItem;
+
+                inventory.ValueRW.OutputCount += recipe.ValueRO.OutputCount;
             }
         }
     }
