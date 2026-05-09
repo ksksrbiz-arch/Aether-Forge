@@ -4,7 +4,7 @@ namespace AetherForge.Factory
 {
     public struct ItemStack : IComponentData
     {
-        public ItemType Item;
+        public ItemType StackItemType;
         public int Count;
         public int Capacity;
         public float Progress;

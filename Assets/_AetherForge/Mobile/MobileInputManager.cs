@@ -10,7 +10,7 @@ namespace AetherForge.Mobile
     /// </summary>
     public class MobileInputManager : MonoBehaviour
     {
-        private const float DefaultJoystickScreenRatio = 0.45f;
+        private const float DefaultJoystickScreenWidthRatio = 0.45f;
         private const float BreakZoneThreshold = 0.35f;
         private const float PlaceZoneThreshold = 0.65f;
 
@@ -119,7 +119,7 @@ namespace AetherForge.Mobile
         private bool IsInJoystickArea(Vector2 screenPosition)
         {
             if (JoystickArea == null)
-                return screenPosition.x < Screen.width * DefaultJoystickScreenRatio;
+                return screenPosition.x < Screen.width * DefaultJoystickScreenWidthRatio;
 
             return RectTransformUtility.RectangleContainsScreenPoint(JoystickArea, screenPosition, null);
         }
