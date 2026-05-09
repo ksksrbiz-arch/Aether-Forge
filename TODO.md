@@ -12,14 +12,14 @@ Voxel builder + factory automation (Minecraft creativity + Factorio logistics) w
 - [x] Factory automation loop (ConveyorBelt + Inserter + Assembler)
 - [x] KitDefinition system (recipes & unlocks)
 - [x] Save/Load system (world + machines)
-- [x] Research Tree foundation (ResearchNode + ResearchManager + point rewards)
+- [x] Research Tree (ResearchNode + ResearchManager + ResearchUI with unlock buttons)
 
 ## High-Priority Enhancements (Next Sprint)
 
-### 1. Research Tree + Progression [IN PROGRESS]
+### 1. Research Tree + Progression [COMPLETE]
 - [x] ResearchNode ScriptableObject
 - [x] ResearchManager (points, unlocks, rewards from crafting)
-- [ ] Full UI for tech tree (buttons, prerequisites, visual tree)
+- [x] ResearchUI (visual tree with buttons and prerequisites)
 - [ ] Integrate with KitDefinition for unlockable kits
 
 ### 2. Kit Blueprints & Sharing
@@ -60,4 +60,4 @@ Voxel builder + factory automation (Minecraft creativity + Factorio logistics) w
 - Steam + mobile store launch
 - Community blueprint sharing platform
 
-**Current Focus**: Finish Research Tree UI + integrate with Kits
+**Current Focus**: Integrate Research Tree with KitDefinition + start Kit Blueprints
